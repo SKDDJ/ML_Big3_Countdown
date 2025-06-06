@@ -49,7 +49,7 @@ You can replace the default conferences (`ICLR`, `ICML`, `NeurIPS`) with others 
 
 ```bash
 cd ~/Library/Application\ Support/Übersicht/widgets
-git clone https://github.com/your-username/ml-conference-deadlines.git
+git clone https://github.com/Happy2Git/ML_Big3_Countdown.git
 ````
 
 ### 3. Install dependencies:
