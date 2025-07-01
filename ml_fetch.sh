@@ -9,7 +9,7 @@ YQ_PATH="/opt/homebrew/bin/yq"
 # Conference definitions: category|filename|display_name
 CONFERENCES=(
   "AI|aaai.yml|AAAI"
-  "CG|cvpr.yml|CVPR"
+  "AI|cvpr.yml|CVPR"
   "AI|iclr.yml|ICLR"
   "DB|vldb.yml|VLDB"
 )

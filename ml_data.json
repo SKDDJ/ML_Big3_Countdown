@@ -1,5 +1,14 @@
 [
   {
+    "name": "CVPR",
+    "year": 2025,
+    "deadline": "2024-11-07 23:59:00",
+    "date": "June 10-17, 2025",
+    "place": "Nashville, Tennessee, USA",
+    "timezone": "UTC-8",
+    "source": "CCF"
+  },
+  {
     "name": "VLDB",
     "year": 2026,
     "deadline": "2025-04-01 17:00:00",
