@@ -1,36 +1,40 @@
 #!/bin/bash
 
-# Path to the cache file
 CACHE="./ML_Big3_Countdown/ml_data.json"
-# Directory to clone the ccf-deadlines repo
-CCF_DEADLINES_DIR=$(mktemp -d)
-# Path to yq
 YQ_PATH="/opt/homebrew/bin/yq"
+TMP_DIR=$(mktemp -d)
+TMP_FILE="$TMP_DIR/all_confs.yml"
 
 # Update if older than 7 days or missing
 if [ ! -f "$CACHE" ] || [ $(find "$CACHE" -mtime +7) ]; then
-  # Clone the ccf-deadlines repository
-  git clone https://github.com/ccfddl/ccf-deadlines.git "$CCF_DEADLINES_DIR"
+  # Get the list of conference files from the ccf-deadlines repo
+  API_URL="https://api.github.com/repos/ccfddl/ccf-deadlines/contents/_data/conferences"
+  
+  # Fetch the file list, extract download URLs, and download all of them into a single file
+  curl -s "$API_URL" | jq -r '.[].download_url' | xargs curl -s >> "$TMP_FILE"
 
-  # Process the YAML files
-  find "$CCF_DEADLINES_DIR/_data/conferences" -name "*.yml" -print0 | xargs -0 "$YQ_PATH" -o=json | jq -s '
+  # Process the combined YAML file
+  cat "$TMP_FILE" | "$YQ_PATH" -o=json | jq -s '
+    # Flatten the array of arrays into a single array
+    flatten |
+    # Filter for the conferences you want
+    map(select(.title == "AAAI" or .title == "CVPR" or .title == "ICLR" or .title == "VLDB")) |
+    # Format the output
     map(
       {
         name: .title,
         year: .year,
-        deadline: .deadline,
+        deadline: .deadline[0], # Taking the first deadline
         date: .date,
         place: .place,
         timezone: .timezone,
         source: "CCF"
       }
-    ) |
-    # Filter for the conferences you want
-    map(select(.name == "AAAI" or .name == "CVPR" or .name == "ICLR" or .name == "VLDB"))
+    )
   ' > "$CACHE"
 
-  # Clean up the cloned repo
-  rm -rf "$CCF_DEADLINES_DIR"
+  # Clean up the temp directory
+  rm -rf "$TMP_DIR"
 fi
 
 cat "$CACHE"
