@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "name": "VLDB",
+    "year": 2026,
+    "deadline": "2025-04-01 17:00:00",
+    "date": "August 31 - September 4, 2026",
+    "place": "Boston, MA, USA",
+    "timezone": "UTC-7",
+    "source": "CCF"
+  },
+  {
+    "name": "AAAI",
+    "year": 2026,
+    "deadline": "2025-07-25 23:59:59",
+    "date": "January 20 - 27, 2026",
+    "place": "Singapore EXPO",
+    "timezone": "UTC-12",
+    "source": "CCF"
+  },
+  {
+    "name": "ICLR",
+    "year": 2026,
+    "deadline": "2025-09-20 20:59:59",
+    "date": "May 01-05, 2026",
+    "place": "Brazil",
+    "timezone": "UTC-8",
+    "source": "CCF"
+  }
+]

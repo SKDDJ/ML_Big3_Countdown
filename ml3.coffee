@@ -1,4 +1,4 @@
-# ML Countdown Widget: ICLR, ICML, NeurIPS (single deadline)
+# ML Conference Countdown Widget: AAAI, CVPR, ICLR, VLDB (CCF Deadlines)
 
 refreshFrequency: 1000  # refresh every second
 command: "./ML_Big3_Countdown/ml_fetch.sh"
